@@ -213,7 +213,7 @@
 
         async function fetchPatientData(id) {
             console.log("Fetching patient data for ID:", id);
-            const get_url = `https://script.google.com/macros/s/AKfycbybOleXoKa9GxXu4Oh3rJ-r3qfNr1hdY8NHD1nvDgLd30mfNidC7E9qpdq6QXYZsl8/exec?id=${id}`;
+            const get_url = `https://script.google.com/a/macros/rxcs.in/s/AKfycbynpWlPDIQulYOvM_WBMmqVCDj7mCxjLq-kAGR5vJlOEDc7mzvYGuIm0fWKd4LwlM48/exec?method=get&id=${id}`;
             try {
                 document.getElementById('loading').style.display = 'flex';
                 const response = await fetch(get_url);
@@ -232,7 +232,7 @@
 
         async function handleFormSubmission(id, status, date, time) {
             console.log("Writing for: ", id);
-            const post_url = `https://script.google.com/macros/s/AKfycbyrR6YdUdVf_S3MwajmOCMlu8E3w4j59mS4yZVEjEvGM1iK5sy4PCkLjeV3tdfC3Mu-/exec?id=${id}&status=${status}&date=${date}&time=${time}`;
+            const post_url = `https://script.google.com/a/macros/rxcs.in/s/AKfycbynpWlPDIQulYOvM_WBMmqVCDj7mCxjLq-kAGR5vJlOEDc7mzvYGuIm0fWKd4LwlM48/exec?method=post&id=${id}&status=${status}&date=${date}&time=${time}`;
             try {
                 document.getElementById('loading').style.display = 'flex';
                 document.getElementById('assistanceForm').style.display = 'none';
