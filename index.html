@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Financial Assistance Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Financial Assistance Form</h1>
+        <form id="assistanceForm">
+            <label for="caregiverName">Caregiver Name:</label>
+            <input type="text" id="caregiverName" name="caregiverName" required>
+            
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" name="patientName" required>
+            
+            <label for="contactNumber">Contact Number:</label>
+            <input type="text" id="contactNumber" name="contactNumber" required>
+            
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+        <p id="responseMessage" style="display:none; margin-top: 20px; color: green; font-weight: bold;">Thank you! Your response has been recorded.</p>
+    </div>
+
+    <script>
+        document.getElementById('assistanceForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const response = await fetch('YOUR_GOOGLE_SCRIPT_URL', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                e.target.style.display = 'none';
+                document.getElementById('responseMessage').style.display = 'block';
+            } else {
+                alert('There was an error submitting your form. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
