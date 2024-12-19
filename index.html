@@ -52,19 +52,16 @@
 <body>
     <div class="container">
         <h1>Financial Assistance Form</h1>
-        <form id="assistanceForm">
-            <label for="caregiverName">Caregiver Name:</label>
-            <input type="text" id="caregiverName" name="caregiverName" required>
-            
+        <form id="assistanceForm">            
             <label for="patientName">Patient Name:</label>
             <input type="text" id="patientName" name="patientName" required>
             
-            <label for="contactNumber">Contact Number:</label>
-            <input type="text" id="contactNumber" name="contactNumber" required>
-            
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" required>
-            
+            <label for="tbtid">TBT ID:</label>
+            <input type="text" id="tbtid" name="tbtid" required>
+        
+            <label for="dnt">Date and Time:</label>
+            <input type="dnt" id="dnt" name="dnt" required>
+
             <button type="submit">Submit</button>
         </form>
         <p id="responseMessage" style="display:none; margin-top: 20px; color: green; font-weight: bold;">Thank you! Your response has been recorded.</p>
@@ -87,6 +84,23 @@
                 alert('There was an error submitting your form. Please try again.');
             }
         });
+
+        function getUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            pName: params.get('pName'),
+            tbtid: params.get('tbtid'),
+        };
+        }
+
+        function populateFormFromUrl() {
+        const data = getUrlParams();
+        document.getElementById('patientName').value = data.pName || '';
+        document.getElementById('tbtid').value = data.tbtid || '';
+        }
+
+        window.onload = populateFormFromUrl;
+
     </script>
 </body>
 </html>
