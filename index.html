@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Financial Assistance Form</title>
+    <title>FAS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -123,7 +123,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 style="text-align: center; margin-bottom: 15px;">Financial Assistance Form</h1>
+        <h1 style="text-align: center; margin-bottom: 15px;">Schedule call for Payment Plan process</h1>
         <div id="errorMessage"class="error-message ">
             <span class="m-1">The link is broken.</span><br>
             <span class="m-2">Reply to the email you received and we will get back to you shortly.</span>
@@ -159,13 +159,29 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="time">Time:</label>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="time" style="font-size: 14px; font-weight: bold; display: block; margin-bottom: 5px;">Time:</label>
                 <div style="width: 100%;">
-                    <input type="time" id="time" name="time" required>
-                    <span style="font-size: 12px; text-align: left;">Kindly pick a time between <b>11:00 AM and 7:00 PM</b></span>
+                    <select id="time" name="time" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;" required>
+                        <option value="" disabled selected>Select a time</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="11:30 AM">11:30 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="12:30 PM">12:30 PM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="1:30 PM">1:30 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="2:30 PM">2:30 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="3:30 PM">3:30 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="4:30 PM">4:30 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                    </select>
+                    <span style="font-size: 12px; color: #555; display: block; margin-top: 5px;">Kindly pick a time between <b>11:00 AM and 5:00 PM</b></span>
                 </div>
             </div>
+            
     
             <div style="display: flex; justify-content: center;">
                 <button type="submit">Submit</button>
@@ -199,12 +215,6 @@
             const day = date.getDay();
             if (day === 0 || day === 6) {
                 alert('Please select a weekday (Monday to Friday) for the date.');
-                e.preventDefault();
-                return;
-            }
-            const [hours, minutes] = time.split(':').map(Number);
-            if (hours < 11 || (hours === 19 && minutes > 0) || hours > 19) {
-                alert('Please select a time between 11:00 AM and 7:00 PM.');
                 e.preventDefault();
                 return;
             }
