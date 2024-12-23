@@ -1,0 +1,58 @@
+.error-message {
+    color: red;
+    font-weight: bold;
+    display: none;
+    text-align: center;
+}
+
+.m-1 {
+    font-size: 1.2rem;
+}
+
+.m-2 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.thankyou-message {
+    color: green;
+    font-weight: bold;
+    display: none;
+    text-align: center;
+}
+
+input[readonly] {
+    background-color: #e0e0e0;
+    cursor: not-allowed; 
+}
+
+.loading {
+    display: none;
+    height: 100%; 
+    width: 100%;  
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 480px) {
+    body{
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}
