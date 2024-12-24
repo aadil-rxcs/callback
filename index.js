@@ -1,3 +1,5 @@
+deploymentURL = 'https://script.google.com/macros/s/AKfycbwggVln57jk53N1APiCXyaR5hLmV-1i6AWg7SGRslshmsbW39jjutPoWymYUhjk2v2k/exec'
+
 $(document).ready(function() {
     $('#datepicker').datepicker({
         dateFormat: 'dd/mm/yy',
@@ -61,7 +63,7 @@ document.getElementById('assistanceForm').addEventListener('submit', async (e) =
 
 async function fetchPatientData(id) {
     // console.log("Fetching patient data for ID:", id);
-    const get_url = `https://script.google.com/a/macros/rxcs.in/s/AKfycbynpWlPDIQulYOvM_WBMmqVCDj7mCxjLq-kAGR5vJlOEDc7mzvYGuIm0fWKd4LwlM48/exec?method=get&id=${id}`;
+    const get_url = `${deploymentURL}?method=get&id=${id}`;
     try {
         document.getElementById('loading').style.display = 'flex';
         const response = await fetch(get_url);
@@ -115,7 +117,7 @@ async function fetchPatientData(id) {
 
 async function handleFormSubmission(id, status, date, time) {
     // console.log("Writing for: ", id);
-    const post_url = `https://script.google.com/a/macros/rxcs.in/s/AKfycbynpWlPDIQulYOvM_WBMmqVCDj7mCxjLq-kAGR5vJlOEDc7mzvYGuIm0fWKd4LwlM48/exec?method=post&id=${id}&status=${status}&date=${date}&time=${time}`;
+    const post_url = `${deploymentURL}?method=post&id=${id}&status=${status}&date=${date}&time=${time}`;
     try {
         document.getElementById('loading').style.display = 'flex';
         document.getElementById('assistanceForm').style.display = 'none';
