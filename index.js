@@ -1,4 +1,4 @@
-deploymentURL = 'https://script.google.com/macros/s/AKfycbyn7CzXJo2kgbeK5jctcMHaLODViUufMdR8mvKUg8EwLy6sW5h494RzNCZlkLjyWBAk/exec'
+deploymentURL = 'https://script.google.com/macros/s/AKfycbzcZ9mxGJEIyPHVcNLjq2BzfTF2A9OsOiju0HIYsUj2a1Ue2NkPZiqxtVJR1LuGffCS/exec'
 
 $(document).ready(function() {
     $('#datepicker').datepicker({
