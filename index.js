@@ -149,10 +149,10 @@ async function handleFormSubmission(id, status, date, time) {
 if (!id || !status) {
     linkBroken();
 } else {
-    if (status === 'Interested') {
+    if (status === 'Interested' || status === 'Y') {
         fetchPatientData(id); 
     } 
-    else if (status === 'NotInterested') {
+    else if (status === 'NotInterested' || status === 'N') {
         handleFormSubmission(id, "Not Interested", "NA", "NA");
     } else {
         linkBroken();
