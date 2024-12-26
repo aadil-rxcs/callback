@@ -79,7 +79,6 @@ async function fetchPatientData(id) {
         if (data["Date"] && data["Time"]){
             if (data["Date"] != "NA") {
                 const dateInput = new Date(data["Date"]);
-                const timeInput = new Date(data["Time"]);
                 
                 const formattedDate = [
                     String(dateInput.getDate()).padStart(2, '0'),
@@ -91,6 +90,7 @@ async function fetchPatientData(id) {
             }
             
             if (data["Time"] != "NA") {
+                const timeInput = new Date(data["Time"]);
                 const localHours = timeInput.getHours();
                 const localMinutes = String(timeInput.getMinutes()).padStart(2, '0');
                 const ampm = localHours >= 12 ? 'PM' : 'AM';
