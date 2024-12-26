@@ -55,9 +55,13 @@ document.getElementById('assistanceForm').addEventListener('submit', async (e) =
         return;
     }
 
+    console.log("Input Date:", inputDate);
+    const formattedUpdateDate = `${String(inputDate.getDate()).padStart(2, '0')}-${String(inputDate.getMonth() + 1).padStart(2, '0')}-${inputDate.getFullYear()}`;
+    console.log("Form submitted with date:", formattedUpdateDate);
+
     const time = document.getElementById('time').value;
     // console.log("Form submitted with date:", inputDate, "and time:", time);
-    handleFormSubmission(id, "Interested", inputDate, time);
+    handleFormSubmission(id, "Interested", formattedUpdateDate, time);
 });
 
 
@@ -73,37 +77,41 @@ async function fetchPatientData(id) {
         document.getElementById('id').value = data["TBT ID"];
 
         if (data["Date"] && data["Time"]){
-            const dateInput = new Date(data["Date"]);
-            const timeInput = new Date(data["Time"]);
+            if (data["Date"] != "NA") {
+                const dateInput = new Date(data["Date"]);
+                const timeInput = new Date(data["Time"]);
+                
+                const formattedDate = [
+                    String(dateInput.getDate()).padStart(2, '0'),
+                    String(dateInput.getMonth() + 1).padStart(2, '0'),
+                    dateInput.getFullYear()
+                ].join('/');
+                
+                document.getElementById('datepicker').value = formattedDate;
+            }
             
-            const formattedDate = [
-                String(dateInput.getDate()).padStart(2, '0'),
-                String(dateInput.getMonth() + 1).padStart(2, '0'),
-                dateInput.getFullYear()
-            ].join('/');
-
-            const localHours = timeInput.getHours();
-            const localMinutes = String(timeInput.getMinutes()).padStart(2, '0');
-            const ampm = localHours >= 12 ? 'PM' : 'AM';
-            const formattedHours = localHours % 12 || 12;        
-            const formattedTime = `${formattedHours}:${localMinutes} ${ampm}`;
-        
-            // console.log("Formatted Date:", formattedDate);
-            // console.log("Formatted Time:", formattedTime);
-        
-            const timeDropdown = document.getElementById('time');
-            const optionToSelect = Array.from(timeDropdown.options).find(
-                (option) => option.value === formattedTime
-            );
-            
-            document.getElementById('datepicker').value = formattedDate;
-            
-            if (optionToSelect) {
-                optionToSelect.selected = true;
-            } 
-            // else {
-            //     console.warn('No matching time found in the dropdown for:', formattedTime);
-            // }
+            if (data["Time"] != "NA") {
+                const localHours = timeInput.getHours();
+                const localMinutes = String(timeInput.getMinutes()).padStart(2, '0');
+                const ampm = localHours >= 12 ? 'PM' : 'AM';
+                const formattedHours = localHours % 12 || 12;        
+                const formattedTime = `${formattedHours}:${localMinutes} ${ampm}`;
+                
+                // console.log("Formatted Date:", formattedDate);
+                // console.log("Formatted Time:", formattedTime);
+                
+                const timeDropdown = document.getElementById('time');
+                const optionToSelect = Array.from(timeDropdown.options).find(
+                    (option) => option.value === formattedTime
+                );    
+                
+                if (optionToSelect) {
+                    optionToSelect.selected = true;
+                } 
+                // else {
+                    //     console.warn('No matching time found in the dropdown for:', formattedTime);
+                    // }
+            }
         }
 
         document.getElementById('assistanceForm').style.display = 'block';
