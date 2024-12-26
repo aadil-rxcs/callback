@@ -27,6 +27,7 @@ function linkBroken() {
     }
 
 const id = getUrlParameter('id');
+const s = getUrlParameter('s');
 const status = getUrlParameter('status');
 
 document.getElementById('assistanceForm').addEventListener('submit', async (e) => {
@@ -146,13 +147,14 @@ async function handleFormSubmission(id, status, date, time) {
     }
 }
 
-if (!id || !status) {
+if ((!id || !status) && (!id || !s))  {
+    console.error('Invalid URL parameters.');
     linkBroken();
 } else {
-    if (status === 'Interested' || status === 'Y') {
+    if (status === 'Interested' || s === 'y') {
         fetchPatientData(id); 
     } 
-    else if (status === 'NotInterested' || status === 'N') {
+    else if (status === 'NotInterested' || s === 'n') {
         handleFormSubmission(id, "Not Interested", "NA", "NA");
     } else {
         linkBroken();
